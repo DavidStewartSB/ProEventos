@@ -1,0 +1,76 @@
+
+<h1>Eventos</h1>
+<hr>
+
+<div class="form-inline">
+    <div class="form-group mb-2">
+        <label class="mr-2">Filtro:</label>
+        <input 
+        type="text" 
+        class="form-control mr-2" 
+        placeholder="Buscar"
+        [(ngModel)]="filterList">
+    </div>
+</div>
+<h3>{{filterList}}</h3>
+<table  class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th><button type="button" class="btn btn-outline-light btn-sm" (click)="show()">{{!showImage ? 'Exibir' : 'Ocultar'}}</button></th>
+            <th>#</th>
+            <th>Tema</th>
+            <th>Local</th>
+            <th>Data</th>
+            <th>Qtd Pessoas</th>
+            <th>Lote</th>
+            <th>Opções</th>
+        </tr>
+    </thead>
+
+    <tbody *ngIf="eventos && eventos.length">
+        <tr *ngFor="let evento of eventosFiltrados">
+            <td>
+                <img 
+                [collapse]="!showImage" 
+                [isAnimated]="true"
+                src="../../assets/img/{{evento.imagemURL}}"
+                 >
+            </td>
+            <td>{{evento.eventoID}}</td>
+            <td>{{evento.tema}}</td>
+            <td>{{evento.local}}</td>
+            <td>{{evento.dataEvento}}</td>
+            <td>{{evento.qntPessoas}}</td>
+            <td>{{evento.lote}}</td>
+            <td>
+                <button type="button" class="btn btn-warning btn-sm mr2">Editar</button>
+                <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+            </td>
+            
+        </tr>
+    </tbody>
+
+    <tfoot *ngIf="!eventos.length">
+        <tr>
+            <td colspan="8" class="text-center">
+                <h4>Nenhum evento encontrado!</h4>
+            </td>
+        </tr>
+    </tfoot>
+    
+</table>
+
+
+
+
+<!-- Diretivas estruturais
+    *ngIf =
+    *ngFor =
+    *ngShow =
+-->
+
+<!-- Bidding e interpolação
+    Bidding: Apenas mostra informação de um objeto
+    Interpolation: sentido mais amplo, podendo usar logica, arrayz, variaveis e etc
+
+-->
